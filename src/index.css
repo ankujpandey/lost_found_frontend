@@ -6,8 +6,84 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+:root {
+  --bs-primary: #FF7D29; /* Light Blue */
+  --bs-secondary: #FFBF78;
+  --bs-ternary: #FFEEA9;
+  --bs-last: #FEFFD2;
+}
+
+.btn-primary {
+  background-color: #FF7D29 !important; /* Custom primary color */
+  border-color: #fc8332 !important;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.app-routes{
+  margin-top: 3.5rem;
+}
+
+/* -----------------------------------
+	Breadcrumb
+--------------------------------------*/
+.breadcrumb {
+  --bs-breadcrumb-divider: "";
+}
+
+.breadcrumb .breadcrumb-item {
+  font-size: 13px;
+  margin-bottom: -7px;
+}
+
+.breadcrumb-item svg {
+  margin-top: -2px;
+  padding: 0;
+  margin-right: -9px;
+  margin-left: -3px;
+}
+
+.breadcrumb li a {
+  color: #1376b8;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.breadcrumb-item {
+  color: #6c757d;
+}
+
+.background-lost-page {
+  background-image: url('./assets/images/lostItesms.jpg');
+  background-size: cover;
+  background-position: center;}
+
+.hero {
+  background-image: url('./assets/images/heroimage.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+
+/* Custom input focus border color */
+input:focus, 
+textarea:focus, 
+select:focus{
+  border-color: #FFBF78 !important; /* Change the color to your preferred one */
+  box-shadow: 0 0 0 0.2rem rgba(255, 191, 120, 0.25) !important; /* Optional: Customize the glow around the border */
+}
+
+/* Custom button focus border color */
+button:focus,
+.button-design:focus {
+  border-color: #FF6347 !important; /* Change the color to your preferred one */
+  box-shadow: 0 0 0 0.2rem rgba(255, 99, 71, 0.25) !important; /* Optional: Customize the glow around the border */
 }

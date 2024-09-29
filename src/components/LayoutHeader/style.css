@@ -1,0 +1,33 @@
+/* Header */
+
+.header-section {
+    top: 0;
+    height: 3.5rem;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
+    border-bottom: 1px solid #ddd;
+    background-color: #ffff;
+    width: calc(100% - 25%);
+    position: fixed;
+    z-index: 999;
+  }
+  
+  .header-section .app-menu {
+    cursor: pointer;
+    width: 5%;
+  }
+  
+  .header-section .app-menu svg {
+    font-size: 1.5rem;
+  }
+  
+  .header-section .full-screen {
+    cursor: pointer;
+    width: 5%;
+  }
+  
+  .header-section .full-screen svg {
+    font-size: 1.5rem;
+    font-weight: 700;
+  } 
+  
+ 

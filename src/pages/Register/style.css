@@ -1,0 +1,84 @@
+.tablist-container {
+    display: inline-flex;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    padding: 5px;
+    border-radius: 8px;
+  }
+  
+  .custom-tab-btn {
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 5px;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: #6b7280; /* Grayish text color */
+  }
+  
+  .custom-tab-btn.active {
+    background-color: white; /* Make active tab look prominent */
+    color: #111827; /* Darker text for active tab */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-tab-btn:hover {
+    background-color: #e5e5e5;
+  }
+  
+  .custom-active {
+    background-color: white;
+    color: #111827;
+  }
+  
+  .custom-inactive {
+    background-color: transparent;
+    color: #6b7280;
+  }
+  
+  .custom-tab-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .avatar-upload-container {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .avatar-upload-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .default-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    color: #999;
+  }
+  
+  .avatar-label {
+    cursor: pointer;
+    position: relative;
+  }
+  
+  #avatarUpload {
+    display: none;
+  }
+
+  .small-text{
+    font-size: smaller !important;
+  }
