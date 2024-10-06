@@ -1,19 +1,32 @@
 import React, { useState } from "react";
-import { ButtonGroup, Button } from "react-bootstrap";
-import { IoPersonCircleOutline } from "react-icons/io5";
 import { Formik } from 'formik';
 import { BsPersonUp } from "react-icons/bs";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerschema } from "../../schema/validation";
+import { apiUrls, docSubmit } from "../../utils/api-config";
+import { toast } from "sonner";
 
 const Register= () => {
   const [avatar, setAvatar] = useState(null);
   const [activeTab, setActiveTab] = useState("all");
+  const [profileImage, setProfileImage] = useState([]);
+  const navigate = useNavigate();
+  const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
 
-  const handleAvatarChange = (event) => {
+  const handleUpload = (event) => {
+    const file = event.target.files[0];
+    console.log("file-------------", file?.size)
+    if (file?.size > MAX_IMAGE_SIZE) {
+      toast.error(
+        `The image you selected is too large. Maximum size allowed is 20 MB.`
+      );
+    } else {
+      setProfileImage(file);
+    }
+
     if (event.target.files.length > 0) {
-      setAvatar(URL.createObjectURL(event.target.files[0]));
+      setAvatar(URL.createObjectURL(file));
     }
   };
 
@@ -37,11 +50,31 @@ const Register= () => {
                 <Formik
                   initialValues={initialValues}
                   validationSchema={registerschema}
-                  onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
-                      alert(JSON.stringify(values, null, 2));
-                      setSubmitting(false);
-                    }, 400);
+                  onSubmit={ async (values, { setSubmitting }) => {
+                    setSubmitting(true);
+                    let url = apiUrls.register;
+                    let formData = new FormData();
+                    formData.append("fname", values.fname);
+                    formData.append("lname", values.lname);
+                    formData.append("email", values.email);
+                    formData.append("password", values.password);
+                    formData.append("mobile", values.mobile);
+                    formData.append("address", values.address);
+                    formData.append("profile_url", profileImage);
+
+                    // console.log("--- form data -- ",formData);
+                    const uploadRes = await docSubmit(url, formData);
+                    // console.log("uploadRes----", uploadRes);
+                    if (!uploadRes.success) {
+                      toast.error('Error', {
+                        description: uploadRes?.message,
+                      })
+                    }else{
+                      toast.success('Registred Successfuly', {
+                        description: 'Please sign-in to continue.',
+                      })
+                      navigate("/sign-in", { replace: true });
+                    }
                   }}
                 >
                   {({
@@ -86,8 +119,8 @@ const Register= () => {
                         <input
                           type="file"
                           id="avatarUpload"
-                          accept="image/*"
-                          onChange={handleAvatarChange}
+                          accept=".jpg, .jpeg, .png"
+                          onChange={handleUpload}
                           style={{ display: "none" }} // Hide the actual file input
                         />
                       </div>
