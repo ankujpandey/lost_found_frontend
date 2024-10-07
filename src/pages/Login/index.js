@@ -27,11 +27,10 @@ const Login = () => {
             <Formik
               initialValues={initialValues}
               validationSchema={loginSchema}
-              onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
-                  setSubmitting(false);
-                }, 400);
+              onSubmit={ async (values, { setSubmitting }) => {
+                
+                console.log("values----------------", values)
+                setSubmitting(false);
               }}
             >
               {({
@@ -44,30 +43,56 @@ const Login = () => {
                 isSubmitting,
                 /* and other goodies */
               }) => (
-                <Form>
-                  <Form.Group controlId="formEmail" className="mb-3">
-                    <Form.Label>Email address</Form.Label>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group controlId="email" className="mb-3">
+                    <Form.Label className={`form-label ${
+                              errors.email && touched.email
+                                ? "text-danger"
+                                : ""}`}>Email address</Form.Label>
                     <Form.Control
                       type="email"
                       placeholder="Enter email"
-                      id="email"
+                      className={`form-control ${
+                        errors.email && touched.email
+                          ? "is-invalid"
+                          : touched.email
+                          ? "is-valid"
+                          : ""
+                      }`}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.email}
                     />
-                    {errors.email && touched.email && errors.email}
+                    {errors.email && touched.email ? (
+                          <p className="form-error small-text form-validation-warning text-danger">
+                            {errors.email}
+                          </p>
+                        ) : null}
                   </Form.Group>
-                  <Form.Group controlId="formPassword" className="mb-3">
-                    <Form.Label>Password</Form.Label>
+                  <Form.Group controlId="password" className="mb-3">
+                    <Form.Label className={`form-label ${
+                              errors.password && touched.password
+                                ? "text-danger"
+                                : ""}`}>Password</Form.Label>
                     <Form.Control
                       type="password"
                       placeholder="Password"
-                      id="password"
+                      className={`form-control ${
+                        errors.password && touched.password
+                          ? "is-invalid"
+                          : touched.password
+                          ? "is-valid"
+                          : ""
+                      }`}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.password}
                     />
-                    {errors.password && touched.password && errors.password}
+                    {errors.password && touched.password ? (
+                          <p className="form-error small-text form-validation-warning text-danger">
+                            {errors.password}
+                          </p>
+                        ) : null}
                   </Form.Group>
                   <div className="d-flex justify-content-center">
                     <Button

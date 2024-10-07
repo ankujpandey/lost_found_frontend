@@ -31,3 +31,45 @@ export async function docSubmit(end_url,formData,contentType = "multipart/form-d
         return error.response.data;
     }
 }
+
+export const callPostApi = async (url, data) => {
+    try {
+        const response = await axios({
+            url: `${process.env.REACT_APP_BASE_URL}${url}`,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-application-id": process.env.REACT_APP_ID,
+                "x-application-name": process.env.REACT_APP_NAME,
+                // "x-access-token": token,
+            },
+            data: data,
+        });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return error.response.data;
+    }
+};
+
+export const callGetApi = async (url) => {
+    try {
+        const response = await axios({
+            url: `${process.env.REACT_APP_BASE_URL}${url}`,
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "x-application-id": process.env.REACT_APP_ID,
+                "x-application-name": process.env.REACT_APP_NAME,
+                // "x-access-token": token
+            },
+        });
+        
+        // console.log("response.data ===>", response.data)
+        
+        return response.data;
+    } catch (error) {
+        // console.log(`Error getting in api`, error);
+        return error?.response?.data;
+    }
+};
