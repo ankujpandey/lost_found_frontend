@@ -2,7 +2,9 @@ import axios from "axios";
 // import publicIp from "react-public-ip";
 
 export const apiUrls = {
-    register: "/lostandfound/v1/registration",
+    register: "/registration",
+    itemCatagory: "/postCategory/fetchAll",
+    report : "/report"
 }
 
 export async function docSubmit(end_url,formData,contentType = "multipart/form-data") {
